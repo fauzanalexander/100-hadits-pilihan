@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Hadith } from '../types';
 import BookOpenIcon from './icons/BookOpenIcon';
 
