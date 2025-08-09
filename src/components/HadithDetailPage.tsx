@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import type { Hadith } from '../types';
 import PlusIcon from './icons/PlusIcon';
 import MinusIcon from './icons/MinusIcon';
@@ -16,11 +17,11 @@ const HadithDetailPage: React.FC<HadithDetailPageProps> = ({ hadith, onBack }) =
   const [sizeIndex, setSizeIndex] = useState(1); // Start with 'text-base'
 
   const increaseSize = () => {
-    setSizeIndex((prev) => Math.min(prev + 1, baseSizes.length - 1));
+    setSizeIndex((prev: number) => Math.min(prev + 1, baseSizes.length - 1));
   };
 
   const decreaseSize = () => {
-    setSizeIndex((prev) => Math.max(prev - 1, 0));
+    setSizeIndex((prev: number) => Math.max(prev - 1, 0));
   };
   
   const currentBaseSize = baseSizes[sizeIndex];

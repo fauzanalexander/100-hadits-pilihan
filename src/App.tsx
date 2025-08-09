@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import type { Hadith } from './types';
 import { hadiths } from './data/hadiths';
 import HadithListPage from './components/HadithListPage';
