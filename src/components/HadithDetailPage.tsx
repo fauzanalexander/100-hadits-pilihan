@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import type { Hadith } from '../types';
 import PlusIcon from './icons/PlusIcon';
 import MinusIcon from './icons/MinusIcon';
