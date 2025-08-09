@@ -1,18 +1,25 @@
+import { useState } from 'react';
 import type { Hadith } from '../types';
 import PlusIcon from './icons/PlusIcon';
 import MinusIcon from './icons/MinusIcon';
 import ArrowLeftIcon from './icons/ArrowLeftIcon';
+import ChevronLeftIcon from './icons/ChevronLeftIcon';
+import ChevronRightIcon from './icons/ChevronRightIcon';
 
 interface HadithDetailPageProps {
   hadith: Hadith;
   onBack: () => void;
+  onNext: () => void;
+  onPrev: () => void;
+  hasNext: boolean;
+  hasPrev: boolean;
 }
 
 const baseSizes = ['text-sm', 'text-base', 'text-lg', 'text-xl', 'text-2xl'];
 const arabicSizes = ['text-2xl', 'text-3xl', 'text-4xl', 'text-5xl', 'text-6xl'];
 const shortArabicSizes = ['text-3xl', 'text-4xl', 'text-5xl', 'text-6xl', 'text-7xl'];
 
-const HadithDetailPage: React.FC<HadithDetailPageProps> = ({ hadith, onBack }) => {
+const HadithDetailPage = ({ hadith, onBack, onNext, onPrev, hasNext, hasPrev }: HadithDetailPageProps) => {
   const [sizeIndex, setSizeIndex] = useState(1); // Start with 'text-base'
 
   const increaseSize = () => {
@@ -161,6 +168,28 @@ const HadithDetailPage: React.FC<HadithDetailPageProps> = ({ hadith, onBack }) =
           </section>
         </article>
       </div>
+      
+      {/* Navigation */}
+      <nav className="flex justify-between items-center mt-8">
+        <button 
+          onClick={onPrev}
+          disabled={!hasPrev}
+          className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg shadow-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          aria-label="Hadits Sebelumnya"
+        >
+          <ChevronLeftIcon className="w-5 h-5" />
+          <span>Sebelumnya</span>
+        </button>
+        <button 
+          onClick={onNext}
+          disabled={!hasNext}
+          className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg shadow-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          aria-label="Hadits Berikutnya"
+        >
+          <span>Berikutnya</span>
+          <ChevronRightIcon className="w-5 h-5" />
+        </button>
+      </nav>
     </div>
   );
 };
