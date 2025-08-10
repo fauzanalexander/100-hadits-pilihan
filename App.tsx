@@ -47,8 +47,7 @@ function App() {
         )}
       </main>
        <footer className="text-center py-8 text-gray-400 text-sm">
-        <p>Aplikasi 100 Hadits Pilihan</p>
-        <p>Berdasarkan karya Said Yai Ardiansyah, M.A.</p>
+        
       </footer>
     </div>
   );
