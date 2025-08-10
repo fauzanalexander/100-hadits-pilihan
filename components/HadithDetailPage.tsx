@@ -88,11 +88,48 @@ const HadithDetailPage: React.FC<HadithDetailPageProps> = ({
           <h2 className="text-2xl sm:text-4xl font-bold text-emerald-800 mt-2" dangerouslySetInnerHTML={{ __html: hadith.title }} />
         </header>
 
-        <article className="space-y-12">
-           {/* ... (Konten Artikel tidak berubah) ... */}
-          <section className="space-y-6">{/* ... */}</section>
-          <section className="py-8 px-6 bg-stone-50 rounded-lg border border-stone-200">{/* ... */}</section>
-          <section className="pt-8 border-t border-stone-200">{/* ... */}</section>
+ <article className="space-y-12">
+          {/* Short Arabic & Translation */}
+          <section className="space-y-6">
+            {hadith.shortArabic.map((item, index) => (
+              <div key={index} className="text-center">
+                <p 
+                  dir="rtl" 
+                  lang="ar" 
+                  className={`font-arabic text-gray-900 font-bold leading-relaxed ${currentShortArabicSize} transition-all duration-300`}
+                >
+                  {item.text}
+                </p>
+                <p className={`text-gray-500 italic mt-2 ${currentBaseSize} transition-all duration-300`}>{item.translation}</p>
+              </div>
+            ))}
+          </section>
+
+          {/* Full Hadith */}
+          <section className="py-8 px-6 bg-stone-50 rounded-lg border border-stone-200">
+             <p
+              dir="rtl"
+              lang="ar"
+              className={`font-arabic text-gray-800 leading-loose text-right ${currentArabicSize} transition-all duration-300`}
+            >
+              {hadith.arabic}
+            </p>
+            <div className={`mt-6 text-gray-700 leading-relaxed ${currentBaseSize} transition-all duration-300`}>
+              <p dangerouslySetInnerHTML={{ __html: hadith.translation }} />
+              <p className="text-sm text-gray-500 italic mt-4">
+                <span className="font-semibold">Sumber:</span> {hadith.source}
+              </p>
+            </div>
+          </section>
+
+          {/* Explanation */}
+          <section className="pt-8 border-t border-stone-200">
+            <h3 className="text-2xl font-bold text-emerald-700 mb-4">Penjelasan <i>Hadits</i></h3>
+            <div
+              className={`explanation-content ${currentBaseSize} text-gray-800 leading-relaxed transition-all duration-300`}
+              dangerouslySetInnerHTML={{ __html: hadith.explanation }}
+            />
+          </section>
         </article>
 
         {/* --- 4. Tambahkan Navigasi Bawah Halaman --- */}
