@@ -59,15 +59,13 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
   return (
     <div className="bg-white min-h-screen">
       {/* Header */}
-      <div className="bg-emerald-700 px-4 sm:px-6 py-6">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl sm:text-3xl font-bold text-white text-center">
-            100 Hadits Pilihan
-          </h1>
-          <p className="text-emerald-100 text-center mt-2 text-sm sm:text-base">
-            Koleksi hadits-hadits pilihan untuk kehidupan sehari-hari
-          </p>
-        </div>
+    <div className="container mx-auto max-w-4xl p-4 sm:p-6">
+      <div className="text-center mb-8">
+        <BookOpenIcon className="w-16 h-16 mx-auto text-emerald-600" />
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mt-4">100 Hadits Pilihan</h1>
+        <p className="text-xl text-emerald-700 mt-3">"Pedoman Hidup Sehari-hari dan Penjelasannya"</p>
+        <p className="text-lg text-gray-500 mt-4">Penulis: Said Yai Ardiansyah, M.A.</p>
+      </div>
       </div>
       
       {/* Search Bar */}
