@@ -46,8 +46,7 @@ function App() {
           <HadithListPage hadiths={hadiths} onSelectHadith={handleSelectHadith} />
         )}
       </main>
-       <footer className="text-center py-8 text-gray-400 text-sm">
-        
+       <footer>
       </footer>
     </div>
   );
