@@ -10,19 +10,18 @@ interface HadithListPageProps {
 
 const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith }) => {
   const [query, setQuery] = useState('');
-
-  const filtered = useMemo(() => 
-    hadiths.filter(h => 
-      (h.title || '').toLowerCase().includes(query.toLowerCase()) ||
-      (h.summary || '').toLowerCase().includes(query.toLowerCase()) ||
-      (h.level || '').toLowerCase().includes(query.toLowerCase())
-    ), [hadiths, query]
-  );
+  
+  const q = query.trim().toLowerCase();
+  const list = q ? hadiths.filter(h => 
+    [h.title, h.summary, h.level, String(h.id)].some(v => 
+      (v ?? '').toString().toLowerCase().includes(q)
+    )
+  ) : hadiths;
 
   const items: JSX.Element[] = [];
   let lastLevel: string | undefined = '';
-
-  for (const hadith of filtered) {
+  
+  for (const hadith of list) {
     if (hadith.level && hadith.level !== lastLevel) {
       lastLevel = hadith.level;
       items.push(
@@ -31,7 +30,6 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
         </li>
       );
     }
-
     items.push(
       <li key={hadith.id}>
         <button
@@ -71,7 +69,7 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
           </p>
         </div>
       </div>
-
+      
       {/* Search Bar */}
       <div className="px-4 sm:px-6 py-3 bg-white sticky top-0 z-20 border-b border-stone-200">
         <label className="sr-only" htmlFor="search">Cari hadits</label>
@@ -82,14 +80,11 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Cari hadits (judul, ringkasan, tingkat)"
-            className="w-full rounded-lg border border-stone-300 px-4 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            className="w-full rounded-lg border border-stone-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
           />
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400" fill="currentColor" viewBox="0 0 20 20">
-            <path clipRule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l3.387 3.387a1 1 0 01-1.414 1.414l-3.387-3.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z" fillRule="evenodd"></path>
-          </svg>
         </div>
       </div>
-
+      
       {/* Hadith List */}
       <div className="max-w-4xl mx-auto">
         <ul className="divide-y divide-stone-200">
