@@ -72,7 +72,6 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
       
       {/* Search Bar */}
       <div className="px-4 sm:px-6 py-3 bg-white sticky top-0 z-20 border-b border-stone-200">
-        <label className="sr-only" htmlFor="search">Cari hadits</label>
         <div className="relative max-w-xl mx-auto">
           <input
             type="text"
