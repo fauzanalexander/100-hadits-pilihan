@@ -77,7 +77,7 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Cari hadits (nomor atau judul)"
-            className="w-full rounded-lg border border-stone-300 px-4 py-2 mb-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            className="w-full rounded-lg border border-stone-300 px-4 py-2 my-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
           />
         </div>
       </div>
