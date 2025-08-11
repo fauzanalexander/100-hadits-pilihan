@@ -82,12 +82,14 @@ const HadithDetailPage = ({ hadith, onBack, onNext, onPrev, hasNext, hasPrev }: 
             margin-top: 0.5em;
         }
       `}</style>
+	  
        {/* Sticky Header */}
-      <div className="sticky top-0 z-20 bg-stone-50/90 backdrop-blur-sm py-4 mb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 border-b border-stone-200">
+	   
+       <div className="sticky top-0 z-20 bg-stone-50/90 dark:bg-slate-900/80 backdrop-blur-sm py-4 mb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 border-b border-stone-200 dark:border-slate-700">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <button
             onClick={onBack}
-            className="flex items-center space-x-2 text-emerald-600 hover:text-emerald-800 font-semibold transition-colors"
+            className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 font-semibold transition-colors"
             aria-label="Kembali ke daftar hadits"
           >
             <ArrowLeftIcon className="w-5 h-5" />
@@ -98,7 +100,7 @@ const HadithDetailPage = ({ hadith, onBack, onNext, onPrev, hasNext, hasPrev }: 
             <button
               onClick={decreaseSize}
               disabled={sizeIndex === 0}
-              className="p-2 rounded-full bg-white text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition shadow-sm"
+              className="p-2 rounded-full bg-white dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition shadow-sm"
               aria-label="Perkecil teks"
             >
               <MinusIcon className="w-5 h-5" />
@@ -106,7 +108,7 @@ const HadithDetailPage = ({ hadith, onBack, onNext, onPrev, hasNext, hasPrev }: 
             <button
               onClick={increaseSize}
               disabled={sizeIndex === baseSizes.length - 1}
-              className="p-2 rounded-full bg-white text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition shadow-sm"
+              className="p-2 rounded-full bg-white dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition shadow-sm"
               aria-label="Perbesar teks"
             >
               <PlusIcon className="w-5 h-5" />
@@ -115,66 +117,62 @@ const HadithDetailPage = ({ hadith, onBack, onNext, onPrev, hasNext, hasPrev }: 
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
-        <header className="text-center mb-8 pb-6 border-b border-stone-200">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 sm:p-8">
+        <header className="text-center mb-8 pb-6 border-b border-stone-200 dark:border-slate-700">
           <div className="flex justify-center mb-4">
-             <span className="inline-block bg-emerald-100 text-emerald-800 text-sm font-bold px-4 py-1 rounded-full">{hadith.level}</span>
+             <span className="inline-block bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-sm font-bold px-4 py-1 rounded-full">{hadith.level}</span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-600 italic">Hadits Ke-{hadith.id}</h1>
-          <h2 className="text-2xl sm:text-4xl font-bold text-emerald-800 mt-2" dangerouslySetInnerHTML={{ __html: hadith.title }} />
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-600 dark:text-slate-400 italic">Hadits Ke-{hadith.id}</h1>
+          <h2 className="text-2xl sm:text-4xl font-bold text-emerald-800 dark:text-emerald-500 mt-2" dangerouslySetInnerHTML={{ __html: hadith.title }} />
         </header>
 
         <article className="space-y-12">
-          {/* Short Arabic & Translation */}
           <section className="space-y-6">
             {hadith.shortArabic.map((item, index) => (
               <div key={index} className="text-center">
                 <p 
                   dir="rtl" 
                   lang="ar" 
-                  className={`font-arabic text-gray-900 font-bold leading-relaxed ${currentShortArabicSize} transition-all duration-300`}
+                  className={`font-arabic text-gray-900 dark:text-slate-100 font-bold leading-relaxed ${currentShortArabicSize} transition-all duration-300`}
                 >
                   {item.text}
                 </p>
-                <p className={`text-gray-500 italic mt-2 ${currentBaseSize} transition-all duration-300`}>{item.translation}</p>
+                <p className={`text-gray-500 dark:text-slate-400 italic mt-2 ${currentBaseSize} transition-all duration-300`}>{item.translation}</p>
               </div>
             ))}
           </section>
 
-          {/* Full Hadith */}
-          <section className="py-8 px-6 bg-stone-50 rounded-lg border border-stone-200">
+          <section className="py-8 px-6 bg-stone-50 dark:bg-slate-900/70 rounded-lg border border-stone-200 dark:border-slate-700">
              <p
               dir="rtl"
               lang="ar"
-              className={`font-arabic text-gray-800 leading-loose text-right ${currentArabicSize} transition-all duration-300`}
+              className={`font-arabic text-gray-800 dark:text-slate-200 leading-loose text-right ${currentArabicSize} transition-all duration-300`}
             >
               {hadith.arabic}
             </p>
-            <div className={`mt-6 text-gray-700 leading-relaxed ${currentBaseSize} transition-all duration-300`}>
+            <div className={`mt-6 text-gray-700 dark:text-slate-300 leading-relaxed ${currentBaseSize} transition-all duration-300`}>
               <p dangerouslySetInnerHTML={{ __html: hadith.translation }} />
-              <p className="text-sm text-gray-500 italic mt-4">
+              <p className="text-sm text-gray-500 dark:text-slate-400 italic mt-4">
                 <span className="font-semibold">Sumber:</span> {hadith.source}
               </p>
             </div>
           </section>
 
-          {/* Explanation */}
-          <section className="pt-8 border-t border-stone-200">
-            <h3 className="text-2xl font-bold text-emerald-700 mb-4">Penjelasan <i>Hadits</i></h3>
+          <section className="pt-8 border-t border-stone-200 dark:border-slate-700">
+            <h3 className="text-2xl font-bold text-emerald-700 dark:text-emerald-500 mb-4">Penjelasan <i>Hadits</i></h3>
             <div
-              className={`explanation-content ${currentBaseSize} text-gray-800 leading-relaxed transition-all duration-300`}
+              className={`explanation-content ${currentBaseSize} text-gray-800 dark:text-slate-300 leading-relaxed transition-all duration-300`}
               dangerouslySetInnerHTML={{ __html: hadith.explanation }}
             />
           </section>
         </article>
       </div>
       
-      {/* Navigation */}
-      <nav className="flex justify-between items-center mt-8">
+      <nav className="flex justify-between items-center mt-8 mb-4">
         <button 
           onClick={onPrev}
           disabled={!hasPrev}
-          className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg shadow-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          className="flex items-center space-x-2 px-4 py-2 bg-white dark:bg-slate-700 rounded-lg shadow-md text-gray-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           aria-label="Hadits Sebelumnya"
         >
           <ChevronLeftIcon className="w-5 h-5" />
@@ -183,7 +181,7 @@ const HadithDetailPage = ({ hadith, onBack, onNext, onPrev, hasNext, hasPrev }: 
         <button 
           onClick={onNext}
           disabled={!hasNext}
-          className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg shadow-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          className="flex items-center space-x-2 px-4 py-2 bg-white dark:bg-slate-700 rounded-lg shadow-md text-gray-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           aria-label="Hadits Berikutnya"
         >
           <span>Berikutnya</span>
