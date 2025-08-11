@@ -17,7 +17,7 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
 
   useEffect(() => {
     const checkScroll = () => {
-      setShowBackToTop(window.scrollY > 400);
+      setShowBackToTop(window.scrollY > 100);
     };
     window.addEventListener('scroll', checkScroll);
     return () => window.removeEventListener('scroll', checkScroll);
@@ -34,7 +34,7 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
     if (hadith.level && hadith.level !== lastLevel) {
       lastLevel = hadith.level;
       items.push(
-        <li className="bg-stone-100 dark:bg-slate-800 px-4 sm:px-6 py-2 sticky top-[68px] z-10 border-y border-stone-200 dark:border-slate-700" key={lastLevel}>
+		<li className="bg-stone-100 dark:bg-slate-800 px-4 sm:px-6 py-2 border-y border-stone-200 dark:border-slate-700" key={lastLevel}>
           <h2 className="text-sm font-bold text-emerald-800 dark:text-emerald-400 tracking-wider uppercase">{lastLevel}</h2>
         </li>
       );

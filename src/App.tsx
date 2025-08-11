@@ -69,10 +69,10 @@ setSearchQuery={setSearchQuery}
 />
 )}
 </main>
-<footer className="text-center py-8 text-gray-400 dark:text-slate-500 text-sm">
-<p>Aplikasi 100 Hadits Pilihan</p>
-<p>Berdasarkan karya Said Yai Ardiansyah, M.A.</p>
-</footer>
+// <footer className="text-center py-8 text-gray-400 dark:text-slate-500 text-sm">
+// <p>Aplikasi 100 Hadits Pilihan</p>
+// <p>Berdasarkan karya Said Yai Ardiansyah, M.A.</p>
+// </footer>
 </div>
 </ThemeProvider>
 );
