@@ -1,26 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './index.css';
+import './index.css'; // <-- PASTIKAN BARIS INI ADA DAN DI ATAS
 
-// 1. Ambil elemen root satu kali saja untuk efisiensi
 const rootElement = document.getElementById('root');
 
-// 2. Pastikan elemen root ada sebelum melanjutkan
 if (rootElement) {
-  // 3. Render aplikasi React Anda
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
   );
 } else {
-  // Berikan pesan error yang jelas jika elemen tidak ditemukan
   console.error("Fatal Error: Root element with id 'root' not found in the DOM.");
 }
 
-// 4. Daftarkan Service Worker setelah aplikasi dimuat
-// Kode ini dipastikan berada di lingkup terluar dan tidak akan menyebabkan error sintaks.
+// Logika pendaftaran Service Worker (tidak berubah)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
