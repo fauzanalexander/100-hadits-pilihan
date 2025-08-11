@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'; // <-- PERBAIKI: Tambahkan useState dan useEffect
 import type { Hadith } from '../types';
 import BookOpenIcon from './icons/BookOpenIcon';
-import SearchIcon from './icons/SearchIcon';
 import ArrowUpIcon from './icons/ArrowUpIcon';
 import ThemeToggle from './ThemeToggle';
+// Hapus 'import SearchIcon' karena tidak digunakan
 
 interface HadithListPageProps {
   hadiths: Hadith[];
@@ -52,6 +52,7 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-lg font-semibold text-emerald-800 dark:text-emerald-500" dangerouslySetInnerHTML={{ __html: hadith.title }}></p>
+              {/* Pastikan summary ada sebelum ditampilkan */}
               {hadith.summary && (
                 <p className="text-sm text-stone-600 dark:text-slate-400 mt-1" dangerouslySetInnerHTML={{ __html: hadith.summary }}></p>
               )}

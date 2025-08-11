@@ -1,10 +1,11 @@
 export interface Hadith {
   id: number;
-  title: string; // Can contain HTML for formatting
+  title: string;
   level: string;
+  summary?: string; // <-- TAMBAHKAN BARIS INI
   shortArabic: { text: string; translation: string }[];
   arabic: string;
-  translation: string; // Can contain HTML for formatting
+  translation: string;
   source: string;
-  explanation: string; // Contains HTML for lists, etc.
+  explanation: string;
 }

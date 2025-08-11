@@ -3,9 +3,8 @@ import type { Hadith } from './types';
 import { hadiths } from './data/hadiths';
 import HadithListPage from './components/HadithListPage';
 import HadithDetailPage from './components/HadithDetailPage';
-import ArrowUpIcon from './components/icons/ArrowUpIcon';
-import { ThemeProvider } from './context/ThemeContext'; // <-- Impor ThemeProvider
-
+import { ThemeProvider } from './context/ThemeContext';
+// Hapus 'import ArrowUpIcon from ...' karena sudah tidak digunakan di sini
 function App() {
 const [selectedHadith, setSelectedHadith] = useState<Hadith | null>(null);
 const [searchQuery, setSearchQuery] = useState('');
@@ -13,6 +12,7 @@ const filteredHadiths = hadiths.filter(hadith => {
 const searchTerm = searchQuery.toLowerCase().trim();
 if (!searchTerm) return true;
 const title = hadith.title.replace(/<[^>]>?/gm, ' ').toLowerCase();
+// Pastikan summary ada sebelum diakses
 const summary = (hadith.summary ?? '').replace(/<[^>]>?/gm, ' ').toLowerCase();
 return (
 title.includes(searchTerm) ||
@@ -49,7 +49,6 @@ mainContent.classList.add('animate-fade-in');
 }, [selectedHadith]);
 return (
 <ThemeProvider>
-{/* Hapus blok <style> dari sini */}
 <div className="bg-stone-50 dark:bg-slate-900 min-h-screen text-gray-800 dark:text-slate-300 selection:bg-emerald-200 dark:selection:bg-emerald-800/50">
 <main id="main-content">
 {selectedHadith ? (
