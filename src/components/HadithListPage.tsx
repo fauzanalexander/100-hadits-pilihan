@@ -115,4 +115,4 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
   );
 };
 
-export default HadithListPage;```
+export default HadithListPage;
