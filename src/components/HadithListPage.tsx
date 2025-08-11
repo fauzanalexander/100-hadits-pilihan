@@ -17,7 +17,7 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
 
   useEffect(() => {
     const checkScroll = () => {
-      setShowBackToTop(window.scrollY > 100);
+      setShowBackToTop(window.scrollY > 50);
     };
     window.addEventListener('scroll', checkScroll);
     return () => window.removeEventListener('scroll', checkScroll);
