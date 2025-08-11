@@ -7,25 +7,31 @@ interface ThemeContextType {
   toggleTheme: () => void;
 }
 
-// Buat context dengan nilai default
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-// Buat komponen Provider
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // State untuk tema, mengambil dari localStorage atau default ke 'light'
   const [theme, setTheme] = useState<Theme>(() => {
+    // Coba ambil dari localStorage dulu
     const savedTheme = localStorage.getItem('theme');
-    return (savedTheme as Theme) || 'light';
+    if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
+      return savedTheme;
+    }
+    // Jika tidak ada, gunakan preferensi sistem operasi
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    // Default terakhir adalah 'light'
+    return 'light';
   });
 
   useEffect(() => {
     const root = window.document.documentElement;
-    
-    // Hapus class lama dan tambahkan class baru
-    root.classList.remove(theme === 'light' ? 'dark' : 'light');
-    root.classList.add(theme);
-
-    // Simpan pilihan tema ke localStorage
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    // Simpan pilihan ke localStorage setiap kali tema berubah
     localStorage.setItem('theme', theme);
   }, [theme]);
 
@@ -40,7 +46,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   );
 };
 
-// Custom hook untuk menggunakan theme context dengan mudah
+// Custom hook untuk menggunakan context, tidak berubah
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
