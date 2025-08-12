@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'; // <-- PERBAIKI: Tambahkan useState dan useEffect
+import React from 'react'; // Hapus useState, useEffect
 import type { Hadith } from '../types';
 import BookOpenIcon from './icons/BookOpenIcon';
-import ArrowUpIcon from './icons/ArrowUpIcon';
 import ThemeToggle from './ThemeToggle';
-// Hapus 'import SearchIcon' karena tidak digunakan
+// Hapus import ArrowUpIcon
 
 interface HadithListPageProps {
   hadiths: Hadith[];
@@ -13,19 +12,7 @@ interface HadithListPageProps {
 }
 
 const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith, searchQuery, setSearchQuery }) => {
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  useEffect(() => {
-    const checkScroll = () => {
-      setShowBackToTop(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', checkScroll);
-    return () => window.removeEventListener('scroll', checkScroll);
-  }, []);
-
-  const handleBackToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // HAPUS: Semua state, useEffect, dan fungsi untuk 'showBackToTop' dihapus dari sini.
 
   const items: JSX.Element[] = [];
   let lastLevel: string | undefined = '';
@@ -34,7 +21,7 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
     if (hadith.level && hadith.level !== lastLevel) {
       lastLevel = hadith.level;
       items.push(
-		<li className="bg-stone-100 dark:bg-slate-800 px-4 sm:px-6 py-2 border-y border-stone-200 dark:border-slate-700" key={lastLevel}>
+        <li className="bg-stone-100 dark:bg-slate-800 px-4 sm:px-6 py-2 border-y border-stone-200 dark:border-slate-700" key={lastLevel}>
           <h2 className="text-sm font-bold text-emerald-800 dark:text-emerald-400 tracking-wider uppercase">{lastLevel}</h2>
         </li>
       );
@@ -52,7 +39,6 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-lg font-semibold text-emerald-800 dark:text-emerald-500" dangerouslySetInnerHTML={{ __html: hadith.title }}></p>
-              {/* Pastikan summary ada sebelum ditampilkan */}
               {hadith.summary && (
                 <p className="text-sm text-stone-600 dark:text-slate-400 mt-1" dangerouslySetInnerHTML={{ __html: hadith.summary }}></p>
               )}
@@ -87,7 +73,7 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
             id="search"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Cari hadits (nomor atau judul)"
+            placeholder="Cari hadits (nomor, judul, kategori...)"
             className="w-full rounded-lg border border-stone-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-800 dark:text-slate-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
           />
         </div>
@@ -103,15 +89,7 @@ const HadithListPage: React.FC<HadithListPageProps> = ({ hadiths, onSelectHadith
         </ul>
       </div>
 
-      {showBackToTop && (
-        <button
-          onClick={handleBackToTop}
-          className="fixed bottom-6 right-6 bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-slate-900 focus:ring-emerald-500 transition-opacity duration-300 animate-fade-in"
-          aria-label="Kembali ke atas"
-        >
-          <ArrowUpIcon className="w-6 h-6" />
-        </button>
-      )}
+      {/* HAPUS: Tombol Back to Top dihapus dari sini */}
     </div>
   );
 };
