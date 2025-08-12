@@ -84,7 +84,8 @@ setSearchQuery={setSearchQuery}
 
 <footer className="text-center py-8 text-gray-400 dark:text-slate-500 text-sm">
       <p>Aplikasi 100 Hadits Pilihan</p>
-      <p>Berdasarkan karya Said Yai Ardiansyah, M.A.</p>
+      <p>Berdasarkan buku karya ustadz Said Yai Ardiansyah, M.A.</p>
+	  <p>Build by FA</p>
     </footer>
 
     {/* TAMBAHKAN KEMBALI: Tombol Back to Top ditempatkan di sini, di luar <main> */}
