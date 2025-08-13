@@ -18,7 +18,8 @@ export default defineConfig({
 
       // Bagian manifest Anda sudah bagus, tidak perlu diubah.
       manifest: {
-        id: '/',
+        filename: 'manifest.json',
+		id: '/',
         name: '100 Hadits Pilihan',
         short_name: 'Hadits Pilihan',
         description: 'Aplikasi referensi 100 hadits pilihan sebagai pedoman hidup sehari-hari, lengkap dengan penjelasan dan terjemahannya.',
