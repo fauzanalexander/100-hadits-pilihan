@@ -8,36 +8,32 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
+      
+      // TAMBAHKAN INI: Opsi untuk membersihkan cache lama secara otomatis
+      // Ini adalah sinyal terkuat untuk memaksa pembaruan.
       workbox: {
+        cleanupOutdatedCaches: true, // <-- PENTING
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg,gif}'],
       },
+
+      // Bagian manifest Anda sudah bagus, tidak perlu diubah.
       manifest: {
-        id: '/', // <-- TAMBAHKAN: Memberi ID unik pada aplikasi Anda
+        id: '/',
         name: '100 Hadits Pilihan',
         short_name: 'Hadits Pilihan',
-        // Deskripsi sudah ada, bagus!
-        description: 'Kumpulan 100 hadits pilihan sebagai pedoman hidup sehari-hari.',
-        
-        // Ganti theme_color agar sesuai dengan tema hijau aplikasi Anda
-        theme_color: '#10b981', // <-- UBAH: Warna utama (hijau emerald)
-        background_color: '#f8fafc', // <-- UBAH: Warna latar belakang (batu terang)
-        
+        description: 'Aplikasi referensi 100 hadits pilihan sebagai pedoman hidup sehari-hari, lengkap dengan penjelasan dan terjemahannya.',
+        theme_color: '#10b981',
+        background_color: '#f8fafc',
         display: 'standalone',
         scope: '/',
         start_url: '/',
-        
-        // <-- TAMBAHKAN: Mengunci orientasi ke potret (vertikal)
         orientation: 'portrait-primary',
-
-        // <-- TAMBAHKAN: Screenshots untuk tampilan di Play Store
-        // PENTING: Pastikan Anda sudah membuat folder `public/screenshots`
-        // dan menaruh file gambar di dalamnya.
         screenshots: [
           {
-            "src": "screenshots/screenshot1.png", // Path relatif dari folder public
+            "src": "screenshots/screenshot1.png",
             "type": "image/png",
             "sizes": "1080x1920",
-            "form_factor": "narrow" // 'narrow' untuk mobile
+            "form_factor": "narrow"
           },
           {
             "src": "screenshots/screenshot2.png",
@@ -58,13 +54,9 @@ export default defineConfig({
             "form_factor": "narrow"
           }
         ],
-
-        // <-- TAMBAHKAN: Launch Handler untuk pengalaman pengguna yang lebih baik
         launch_handler: {
           "client_mode": ["navigate-existing", "auto"]
         },
-
-        // Bagian 'icons' Anda sudah bagus, tidak perlu diubah
         icons: [
           {
             src: 'icons/icon-192x192.png',
